@@ -57,3 +57,36 @@ input[type="checkbox"].input-validation-error {
 .login > li > p {
     margin-right: 5px;
 }
+
+.btn {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+body {
+    font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+}
+
+.navbar-inverse {
+    background-color: rgba(0,0,0,0.6);
+    font-size: 16px;
+    line-height: 20px;
+    border-color: #FFF;
+    border-width: 3px;
+    border-radius: 20px;
+}
+
+    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .navbar-inverse .navbar-text {
+        color: #FFF;
+    }
+
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+            color: #c4c4c4;
+        }
+
+hr {
+    border-top: 2px solid #e1e1e1;
+}

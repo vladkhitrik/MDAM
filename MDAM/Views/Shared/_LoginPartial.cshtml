@@ -12,7 +12,7 @@
             </p>
             <ul class="login nav navbar-nav navbar-right">
                 <li>
-                    @Html.ActionLink(User.Identity.GetUserName(), "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Управление аккаунтом", @class = "login" })
+                    @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Управление аккаунтом", @class = "login" })
                 </li>
             </ul>
         </li>
