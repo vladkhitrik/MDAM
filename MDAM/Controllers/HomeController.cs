@@ -21,6 +21,11 @@ namespace MDAM.Controllers
             return View();
         }
 
+        public ActionResult Navbar()
+        {
+            return PartialView("_NavbarPartial");
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

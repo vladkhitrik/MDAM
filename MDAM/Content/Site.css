@@ -83,10 +83,24 @@ body {
         color: #FFF;
     }
 
-        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > input:hover {
             color: #c4c4c4;
         }
 
 hr {
     border-top: 2px solid #e1e1e1;
 }
+
+.validate-summmary-form ul {
+    padding-left: 10px;
+}
+
+.btn-link {
+    padding: 15px;
+    margin: 0px;
+    border:0px;
+}
+
+    .btn-link:hover {
+        text-decoration: none;
+    }

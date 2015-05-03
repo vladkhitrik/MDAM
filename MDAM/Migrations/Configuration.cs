@@ -33,7 +33,7 @@ namespace MDAM.Migrations
                 roleManager.Create(roleUser);
 
                 // Создание пользователей
-                var admin = new ApplicationUser { UserName = "admin" };
+                var admin = new ApplicationUser { UserName = "admin", Email="vlad_khitrik@inbox.ru" };
                 string password = "mdamadm";
                 var result = userManager.Create(admin, password);
 
