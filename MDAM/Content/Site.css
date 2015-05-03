@@ -74,9 +74,14 @@ body {
     background-color: rgba(0,0,0,0.6);
     font-size: 16px;
     line-height: 20px;
-    border-color: #FFF;
-    border-width: 3px;
+    border-right-width: 3px;
+    border-top-width: 3px;
+    border-left-width: 3px;
+    border-right-color: #FFF;
+    border-left-color: #FFF;
+    border-top-color: #FFF;
     border-radius: 20px;
+    border-bottom: none;
 }
 
     .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .navbar-inverse .navbar-text {
@@ -98,9 +103,23 @@ hr {
 .btn-link {
     padding: 15px;
     margin: 0px;
-    border:0px;
+    border: 0px;
 }
 
     .btn-link:hover {
         text-decoration: none;
     }
+
+.loading {
+    background: #aaaaaa url("images/ui-bg_diagonals-thick_50_aaaaaa_40x40.png") 50% 50% repeat;
+    opacity: .5;
+    filter: Alpha(Opacity=50); /* support: IE8 */
+    border: none;
+    padding: 15px;
+    background-color: rgba(0,0,0,0.6);
+    /*-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;*/
+    border-radius: 20px;
+    opacity: 1;
+    color: #fff;
+}
