@@ -56,3 +56,5 @@ D:\Git\MDAM\MDAM\obj\Debug\MDAM.pdb
 D:\Git\MDAM\MDAM\bin\EntityFramework.Extended.dll
 D:\Git\MDAM\MDAM\bin\EntityFramework.Extended.xml
 D:\Git\MDAM\MDAM\bin\ShortGuid.dll
+D:\Git\MDAM\MDAM\obj\Debug\MDAM.Migrations.init.resources
+D:\Git\MDAM\MDAM\obj\Debug\MDAM.csproj.GenerateResource.Cache

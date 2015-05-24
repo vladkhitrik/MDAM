@@ -7,7 +7,7 @@
 <h2>@ViewBag.Count</h2>
 
 <p>
-   @Html.ActionLink("Создание нового диалога", "Create", routeValues: null, htmlAttributes: new { @class = "viewDialog", dialogTitle = "Новый диалог", dialogForm = "createForm", okBtn = "Создать", onclick = "refresh=true;" })
+    @Html.ActionLink("Создание нового диалога", "Create", routeValues: null, htmlAttributes: new { @class = "viewDialog", dialogTitle = "Новый диалог", dialogForm = "createForm", okBtn = "Создать", onclick = "refresh=true;" })
 </p>
 <table class="table">
     <tr>
@@ -43,8 +43,12 @@
             <td>
                 @foreach (var user in item.ApplicationUsers)
                 {
-                    <img class="img-responsive" src="~/Images/Users/@user.Image" height="50" width="50" />
-                    @Html.ActionLink(user.UserName, "Details", "Account", new { id = user.Id }, new { target = "_blank" }) <br />
+                    <div class="form-horizontal">
+                        <div style="max-width:50px; max-height: 50px; overflow:hidden; display:inline-block;">
+                            <img class="img-responsive" src="~/Images/Users/@user.Image" width="50" />
+                        </div>
+                        @Html.ActionLink(user.UserName, "Details", "Account", new { id = user.Id }, new { target = "_blank", style = "position:relative;bottom:20px;" }) <br/>
+                    </div>
                 }
             </td>
             <td>

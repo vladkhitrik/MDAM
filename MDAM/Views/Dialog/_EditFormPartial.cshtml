@@ -11,7 +11,9 @@
     <div class="form-group">
         @Html.LabelFor(model => model.CreatorUserId, htmlAttributes: new { @class = "control-label col-md-1" })
         <div class="col-md-8 col-md-offset-2">
-            <img class="img-responsive" src="~/Images/Users/@Model.CreatorUser.Image" height="50" width="50" />
+            <div style="max-width:50px; max-height: 50px; overflow:hidden; display:inline-block;">
+                <img class="img-responsive" src="~/Images/Users/@Model.CreatorUser.Image" width="50" />
+            </div>
             @Html.DisplayFor(model => model.CreatorUser.UserName)
         </div>
     </div>

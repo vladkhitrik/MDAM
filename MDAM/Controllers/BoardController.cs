@@ -19,7 +19,7 @@ namespace MDAM.Controllers
         // GET: Board
         public ActionResult Index()
         {
-            var boards = db.Boards.Include(b => b.CreatorUser);
+            var boards = db.Boards.Include(b => b.CreatorUser).Where(t=>t.Status.Equals("Активно"));
             return View(boards.ToList());
         }
 

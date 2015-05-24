@@ -1,13 +1,15 @@
 ﻿@using System.Globalization
 @model IEnumerable<MDAM.Models.Messages.Message>
-<h5><b>Всего @ViewBag.Count</b></h5> 
+<h5><b>Всего @ViewBag.Count</b></h5>
 <table class="table">
     @foreach (var item in Model)
     {
         <tr>
             <td class="col-md-1">
-                <img class="img-responsive" src="~/Images/Users/@item.Sender.Image" height="50" width="50" />
-                @Html.ActionLink(item.Sender.UserName, "Details", "Account", new { id = item.SenderId }, new { target = "_blank" }) <br />
+                <div style="max-width:50px; max-height: 50px; overflow:hidden; display:inline-block;">
+                    <img class="img-responsive" src="~/Images/Users/@item.Sender.Image" width="50" />
+                </div>
+                @Html.ActionLink(item.Sender.UserName, "Details", "Account", new { id = item.SenderId }, new { target = "_blank", style="position:absolute;bottom:20px;margin-bottom:30px;" }) <br />
                 <span style="font-size: x-small">@item.DateTime.ToString("dd MMMM yyyy в HH:mm:ss", CultureInfo.CreateSpecificCulture("ru-RU"))</span>
             </td>
             <td class="col-md-10">
