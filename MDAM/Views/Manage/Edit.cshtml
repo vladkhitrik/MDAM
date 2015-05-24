@@ -1,0 +1,89 @@
+﻿@model MDAM.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Профиль</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.Label("Логин", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName, null, "UserName", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, null, "Email", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, "FirstName", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, null, "FirstName", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecondName, "SecondName", htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecondName, null, "SecondName", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        @if (Model.Image == "default.jpg")
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-1" })
+                <div class="col-md-10">
+                    <label id="selectFile" class="btn btn-default glyphicon glyphicon-paperclip"></label>
+                    <span id="fileName">Файл не выбран</span>
+                    <input type="file" id="upload" name="upload" style="display:none" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-1" onmouseout="$('#deleteBtn').hide();" onmouseover="$('#deleteBtn').show();">
+                    @Html.HiddenFor(model => model.Id)
+                    <p>
+                        @Html.ActionLink(" ", "DeletePhoto", "Manage", new { Id = Model.Id }, new { @id = "deleteBtn", @class = "btnRemove glyphicon glyphicon-remove btn", @style = "display:none; position:absolute; right:-20px; z-index:3;" })
+                        <img class="img-thumbnail" src="~/Images/Users/@Model.Image" height="300" width="300" />
+                    </p>
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+<script>
+    $(function () {
+        $("#selectFile").click(function () {
+            $("#upload").click();
+        });
+
+        $("#upload").change(function () {
+            if (this.value != "") {
+                $("#fileName").html(this.value.split('\\').pop());
+            }
+            else {
+                $("#fileName").html("Файл не выбран");
+            }
+        });
+    });
+</script>
+}

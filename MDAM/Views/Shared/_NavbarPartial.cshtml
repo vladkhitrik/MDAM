@@ -4,10 +4,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    @Html.ActionLink("УРиС АБС УОР", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @*@Html.ActionLink("УРиС АБС УОР", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
 </div>
 <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
+        <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-chevron-down"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink("Диалоги", "Index", "Dialog")</li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="divider"></li>
+                    <li>@Html.ActionLink("Типы диалогов", "Index", "DialogType")</li>
+                }
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Настройки профиля", "Index", "Manage")</li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("Настройка пользователей", "DetailsAdmins", "Account")</li>
+                }
+            </ul>
+        </li>
         <li>@Html.ActionLink("Главная", "Index", "Home")</li>
         <li>@Html.ActionLink("О нас", "About", "Home")</li>
         <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>

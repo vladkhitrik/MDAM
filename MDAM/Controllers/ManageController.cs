@@ -15,7 +15,7 @@ namespace MDAM.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -59,8 +59,11 @@ namespace MDAM.Controllers
                 : message == ManageMessageId.Error ? "Произошла ошибка."
                 : "";
 
-            var userId = User.Identity.GetUserId();
-            return View();
+            var model = new IndexViewModel
+            {
+                ApplicationUser = db.Users.Find(User.Identity.GetUserId())
+            }; 
+            return View(model);
         }
 
         //
@@ -94,6 +97,74 @@ namespace MDAM.Controllers
             return View(model);
         }
 
+        public ActionResult Edit(string Id)
+        {
+            ApplicationUser user = db.Users.Find(Id);
+            return View(user);
+        }
+        //
+        // POST
+        [HttpPost]
+        public ActionResult Edit(string Id, string UserName, string Email, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = db.Users.Find(Id);
+
+                if (UserName != user.UserName)
+                {
+                    user.UserName = UserName;
+                }
+                else if (user.Email != Email)
+                {
+                    user.Email = Email;
+                }
+
+                if (upload != null)
+                {
+                    user.Image = UploadFile(upload);
+                }
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private string UploadFile(HttpPostedFileBase upload)
+        {
+            string fileName = System.IO.Path.GetFileName(upload.FileName);
+            // сохраняем файл в папку Images в проекте
+            upload.SaveAs(Server.MapPath("~/Images/Users/" + fileName));
+            return fileName;
+        }
+
+        public ActionResult DeletePhoto(string Id)
+        {
+            // получаем пользователя
+            ApplicationUser user = db.Users.Find(Id);
+            // путь к файлу
+            string pathToFile = Server.MapPath("~/Images/Users/" + user.Image);
+
+            // если файл не стандартный
+            if (user.Image != "default.jpg")
+            {
+                // существует ли файл
+                if (System.IO.File.Exists(pathToFile))
+                {
+                    // удаляем файл и меняем на стандартный
+                    System.IO.File.Delete(pathToFile);
+                    user.Image = "default.jpg";
+                    db.SaveChanges();
+                }
+                else
+                {
+                    user.Image = "default.jpg";
+                }
+            }
+
+            return View("Edit", user);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

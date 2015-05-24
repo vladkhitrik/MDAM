@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@model MDAM.Models.Dialogs.Dialog
+
+@{
+    ViewBag.Title = "Диалоги";
+}
+
+<h2>Просмотр детальной информации</h2>
+
+<div>
+    <h4>Диалог</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatorUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatorUser.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DialogType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DialogType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUsers)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var user in Model.ApplicationUsers)
+                {
+                    <li>@user.UserName</li>
+                }
+            </ul>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @{
+        if (Model.CreatorUserId == User.Identity.GetUserId())
+        {
+            Html.ActionLink("Редактирование", "Edit", new {id = Model.Id}); @:|
+        }
+    }
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

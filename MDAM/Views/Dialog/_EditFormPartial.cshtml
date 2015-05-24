@@ -1,0 +1,43 @@
+﻿@model MDAM.Models.Dialogs.Dialog
+
+@using (Html.BeginForm("Edit", "Dialog", FormMethod.Post, new { enctype = "multipart/form-data", id = "editForm", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "validate-summmary-form" })
+    <hr />
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreatorUserId, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-8 col-md-offset-2">
+            <img class="img-responsive" src="~/Images/Users/@Model.CreatorUser.Image" height="50" width="50" />
+            @Html.DisplayFor(model => model.CreatorUser.UserName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DialogTypeId, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-12">
+            @Html.DropDownList("DialogTypeId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DialogTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-12">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApplicationUsers, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-12">
+            @Html.ListBox("SelectedUsers", ViewBag.Users as MultiSelectList, new { @class = "form-control chzn-select", data_placeholder = "Выберите участников" })
+            @Html.ValidationMessageFor(model => model.ApplicationUsers, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+}

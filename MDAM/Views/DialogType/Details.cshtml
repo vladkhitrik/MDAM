@@ -1,0 +1,26 @@
+﻿@model MDAM.Models.DialogTypes.DialogType
+
+@{
+    ViewBag.Title = "Типы диалогов";
+}
+
+<h2>Просмотр детальной информации</h2>
+
+<div>
+    <h4>Тип диалогов</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад к списку", "Index")
+</p>

@@ -7,14 +7,25 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Изменение настроек вашего аккаунта</h4>
+    <h4>Изменение настроек вашей учетной записи</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Пароль:</dt>
+        <dt>Пароль</dt>
         <dd>
-            [
-            @Html.ActionLink("Изменить свой пароль", "ChangePassword")
-            ]
+            [@Html.ActionLink("Изменить свой пароль", "ChangePassword")]
         </dd>
     </dl>
+    @using (Html.BeginForm("Edit", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" value="@Model.ApplicationUser.Id" name="Id" />
+        <dl class="dl-horizontal">
+            <dt>Профиль</dt>
+            <dd>
+                [@Html.ActionLink("Просмотр", "Details", "Account", new { id = Model.ApplicationUser.Id }, new { target = "_blank" })]
+            </dd>
+            <dd>
+                [@Html.ActionLink("Редактирование", "Edit", "Manage", new { id = Model.ApplicationUser.Id }, new { target = "_blank" })]
+            </dd>
+        </dl>
+    }
 </div>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MDAM.Models.DialogTypes.DialogType>
+
+@{
+    ViewBag.Title = "Типы диалогов";
+}
+
+<h2>Список типов диалогов</h2>
+
+<p>
+    @Html.ActionLink("Создание нового типа диалогов", "Create", routeValues: null, htmlAttributes: new { @class = "viewDialog", dialogTitle = "Новый тип диалога", dialogForm = "createForm", okBtn = "Создать", onclick = "refresh=true;" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "DeleteConfirmed", new { id = item.Id }, htmlAttributes: new { @class = "btnRemove glyphicon glyphicon-remove pull-right confirm btn" })
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnEdit glyphicon glyphicon-pencil pull-right btn viewDialog", dialogTitle = "Изменение типа диалога", dialogForm = "editForm", okBtn = "Изменить", onclick = "refresh=true;" })
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryconfirm")
+}

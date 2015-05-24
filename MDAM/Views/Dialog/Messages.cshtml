@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Сообщения";
+}
+
+<h2>Просмотр сообщений</h2>
+
+<p>
+    @Html.ActionLink("Создание нового диалога", "Create")
+</p>
+<p>
+    <div class="form-inline">
+        @using (Html.BeginForm("AddMessage", "Dialog", FormMethod.Post, new { enctype = "multipart/form-data", id = "sendForm" }))
+        {
+            <div style="float:left; padding-right:10px">
+                <textarea id="text" class="form-control" style="width: 550px; height: 70px"></textarea>
+            </div>
+            <div>
+                <input class="form-control pull-right" type="search" placeholder="Поиск" style="margin-bottom:10px;" />
+                <button id="sendBtn" class="btn btn-default">Отправить</button><br />
+                <label id="selectFile" class="btn btn-default glyphicon glyphicon-paperclip"></label>
+                <span id="fileName">Файл не выбран</span>
+                <input type="file" id="upload" name="upload" style="display:none" />
+
+            </div>
+            
+        }
+
+    </div>
+</p>
+<p>
+    <div>
+        
+
+    </div>
+</p>
+<div id="container" style="height:350px; overflow-y: auto; position: static"></div>
+<div>
+    @Html.ActionLink("Назад к списку", "Index")
+</div>
+@section Scripts{
+    <script>
+        var container = $("#container");
+        var updateMessages = function () {
+            $.get("/Dialog/MessagesList?dialogId=" + "@ViewBag.DialogId",
+                            function (data) {
+                                container.html(data);
+                            });
+        };
+
+        updateMessages();
+
+        var removeMsg = function (elem) {
+            $("#msgForm").ajaxForm({
+                data: { id: $(elem).attr("data-id") },
+                success: function () { updateMessages(); }
+            });
+        }
+        $(function () {
+            var timerId = setInterval(function () {
+                updateMessages();
+            }, 1000);
+
+            $('#sendBtn').click(function () {
+                sendMsg();
+            });
+            var sendMsg = function () {
+                $("#sendForm").ajaxForm({
+                    data: { dialogId: '@ViewBag.DialogId', text: $("#text").val() },
+                    success: function () { updateMessages(); }
+                });
+                $('#text').val('');
+                $("#fileName").html("Файл не выбран");
+            };
+
+
+            $("#selectFile").click(function () {
+                $("#upload").click();
+            });
+
+            $("#upload").change(function () {
+                if (this.value != "") {
+                    $("#fileName").html(this.value.split('\\').pop());
+                }
+                else {
+                    $("#fileName").html("Файл не выбран");
+                }
+            });
+        });
+    </script>
+}
+
+

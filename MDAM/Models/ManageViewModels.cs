@@ -7,6 +7,7 @@ namespace MDAM.Models
 {
     public class IndexViewModel
     {
+        public ApplicationUser ApplicationUser { get; set; }
     }
 
     public class ChangePasswordViewModel

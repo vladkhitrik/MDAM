@@ -1,0 +1,34 @@
+﻿@using System.Globalization
+@model IEnumerable<MDAM.Models.Messages.Message>
+<h5><b>Всего @ViewBag.Count</b></h5> 
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="col-md-1">
+                <img class="img-responsive" src="~/Images/Users/@item.Sender.Image" height="50" width="50" />
+                @Html.ActionLink(item.Sender.UserName, "Details", "Account", new { id = item.SenderId }, new { target = "_blank" }) <br />
+                <span style="font-size: x-small">@item.DateTime.ToString("dd MMMM yyyy в HH:mm:ss", CultureInfo.CreateSpecificCulture("ru-RU"))</span>
+            </td>
+            <td class="col-md-10">
+                <blockquote>
+                    @using (Html.BeginForm("RemoveMessage", "Dialog", FormMethod.Post, new { id = "msgForm" }))
+                    {
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Text)
+                            <button id="removeBtn" class="btnRemove glyphicon glyphicon-remove pull-right btn" data-id="@item.Id" onclick="removeMsg(this)"></button>
+                        </p>
+                    }
+                    @if (item.Attachment != null)
+                    {
+                        <small>
+                            @Html.ActionLink(item.Attachment.FileName, "Download", new { id = item.Id }, htmlAttributes: new { @target = "_blank" })
+                            @Html.Raw(" (" + item.Attachment.Size + " Кб)")
+                        </small>
+                    }
+                </blockquote>
+            </td>
+        </tr>
+    }
+</table>
+@Scripts.Render("~/bundles/jqueryconfirm")

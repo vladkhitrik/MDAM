@@ -15,8 +15,11 @@
         </div>
     </div>
     <div class="container body-content">
-        <div id="dialog"></div>
-        @RenderBody()
+        <div class="row">
+            @RenderBody()
+        </div>
+        <div id="dialog">
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - ОАО "Центр банковских технологий"</p>
@@ -28,7 +31,10 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryform")
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/chsjquery")
     <script>
+        enableBlock = false;
+        refresh = false;
         UpdateNavbar = function () {
             $.get('@Url.Action("Navbar", "Home")',
                             function (data) {

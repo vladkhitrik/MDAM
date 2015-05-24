@@ -167,21 +167,36 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
+    <Compile Include="Controllers\DialogController.cs" />
+    <Compile Include="Controllers\DialogTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAuthorize.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Attachments\Attachment.cs" />
+    <Compile Include="Models\Boards\Board.cs" />
+    <Compile Include="Models\Common\DbEntity.cs" />
+    <Compile Include="Models\Dialogs\Dialog.cs" />
+    <Compile Include="Models\DialogTypes\DialogType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Messages\Message.cs" />
+    <Compile Include="Models\News\New.cs" />
+    <Compile Include="Models\Offices\Office.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
     <Content Include="Content\themes\base\images\ui-bg_diagonals-thick_50_aaaaaa_40x40.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_cccccc_40x100.png" />
@@ -206,16 +221,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Static\favicon.ico" />
+    <Content Include="Images\Static\main_background.jpg" />
+    <Content Include="Images\Users\default.jpg" />
     <Content Include="Queries\DropDatabaseMdam.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Lucida Grande.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\Custom\dialog-create-chosen.js" />
     <Content Include="Scripts\Custom\global.js" />
     <Content Include="Scripts\Custom\modal.dialog.js" />
+    <Content Include="Scripts\Custom\my-confirm.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.confirm.js" />
+    <Content Include="Scripts\jquery.confirm.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.form.min.js.map" />
@@ -256,9 +280,36 @@
     <Content Include="Views\Account\_LoginFormPartial.cshtml" />
     <Content Include="Views\Account\_RegisterFormPartial.cshtml" />
     <Content Include="Views\Shared\_NavbarPartial.cshtml" />
+    <Content Include="Views\DialogType\Create.cshtml" />
+    <Content Include="Views\DialogType\Delete.cshtml" />
+    <Content Include="Views\DialogType\Details.cshtml" />
+    <Content Include="Views\DialogType\Edit.cshtml" />
+    <Content Include="Views\DialogType\Index.cshtml" />
+    <Content Include="Views\Dialog\Create.cshtml" />
+    <Content Include="Views\Dialog\Delete.cshtml" />
+    <Content Include="Views\Dialog\Details.cshtml" />
+    <Content Include="Views\Dialog\Edit.cshtml" />
+    <Content Include="Views\Dialog\Index.cshtml" />
+    <Content Include="Views\Dialog\Messages.cshtml" />
+    <Content Include="Views\Dialog\_Messages.cshtml" />
+    <Content Include="Views\Account\AccessDenied.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\DetailsAdmins.cshtml" />
+    <Content Include="Views\DialogType\_CreateFormPartial.cshtml" />
+    <Content Include="Views\DialogType\_EditFormPartial.cshtml" />
+    <Content Include="Views\Dialog\_CreateFormPartial.cshtml" />
+    <Content Include="Views\Dialog\_EditFormPartial.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Account\ManageAdmins.cshtml" />
+    <Content Include="Views\Board\Create.cshtml" />
+    <Content Include="Views\Board\Delete.cshtml" />
+    <Content Include="Views\Board\Details.cshtml" />
+    <Content Include="Views\Board\Edit.cshtml" />
+    <Content Include="Views\Board\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Attachments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

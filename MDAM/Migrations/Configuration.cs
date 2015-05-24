@@ -1,6 +1,7 @@
 namespace MDAM.Migrations
 {
     using MDAM.Models;
+    using MDAM.Models.DialogTypes;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
@@ -33,7 +34,7 @@ namespace MDAM.Migrations
                 roleManager.Create(roleUser);
 
                 // Создание пользователей
-                var admin = new ApplicationUser { UserName = "admin", Email="vlad_khitrik@inbox.ru" };
+                var admin = new ApplicationUser { UserName = "Admin", Email = "vlad_khitrik@inbox.ru" };
                 string password = "mdamadm";
                 var result = userManager.Create(admin, password);
 
@@ -64,6 +65,12 @@ namespace MDAM.Migrations
 
                 base.Seed(context);
             }
+
+            context.DialogTypes.AddOrUpdate(
+                new DialogType { Title = "Беседа" },
+                new DialogType { Title = "Задание" },
+                new DialogType { Title = "Почта" }
+            );
         }
     }
 }

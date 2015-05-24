@@ -70,7 +70,7 @@ body {
     font-style: normal;
 }
 
-.navbar-inverse {
+.navbar-inverse, .dropdown-menu {
     background-color: rgba(0,0,0,0.6);
     font-size: 16px;
     line-height: 20px;
@@ -84,12 +84,19 @@ body {
     border-bottom: none;
 }
 
-    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .navbar-inverse .navbar-text {
+.dropdown-menu {
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-left-width: 0px;
+}
+
+    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand, .navbar-inverse .navbar-text, .dropdown-menu > li > a {
         color: #FFF;
     }
 
-        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > input:hover {
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > input:hover, .dropdown-menu > li > a:hover {
             color: #c4c4c4;
+            background-color: transparent;
         }
 
 hr {
@@ -117,9 +124,35 @@ hr {
     border: none;
     padding: 15px;
     background-color: rgba(0,0,0,0.6);
-    /*-webkit-border-radius: 10px;
-    -moz-border-radius: 10px;*/
     border-radius: 20px;
     opacity: 1;
     color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #808080;
+}
+
+.btnRemove, .btnEdit {
+    background-color: transparent;
+    opacity: 0.2;
+}
+
+    .btnRemove:hover {
+        color: #d2322d;
+        opacity: 1;
+    }
+
+    .btnEdit:hover {
+        color: #ed9c28;
+        opacity: 1;
+    }
+
+.img-responsive {
+    display: initial;
+}
+
+.chosen-container .chosen-container-multi, .chosen-container .chosen-container-multi .chosen-with-drop .chosen-container-active {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    border: 4px;
 }

@@ -26,6 +26,14 @@ namespace MDAM
                         "~/Scripts/Custom/global.js",
                         "~/Scripts/Custom/modal.dialog.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chsjquery").Include(
+                                   "~/Scripts/chosen.jquery.min.js",
+                                   "~/Scripts/custom/dialog-create-chosen.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryconfirm").Include(
+                        "~/Scripts/jquery.confirm.min.js",
+                        "~/Scripts/custom/my-confirm.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -37,7 +45,8 @@ namespace MDAM
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/chosen.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                       "~/Content/themes/base/jquery-ui*",

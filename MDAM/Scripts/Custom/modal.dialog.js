@@ -17,13 +17,20 @@
             {
                 id: "okBtn",
                 click: function () {
+                    enableBlock = true;
                     $("#" + dlg.dialog("option", "form")).ajaxForm({
                         target: "#" + dlg.dialog("option", "form"),
                         success: function (data) {
+                            enableBlock = false;
                             var validationSummary = $('.validation-summary-errors ul li');
                             if (validationSummary.length == 0) {
                                 dlg.dialog("close");
                                 UpdateNavbar();
+                                if (refresh)
+                                {
+                                    location.reload();
+                                    refresh = false;
+                                }
                             }
                         }
                     }).submit();
@@ -38,7 +45,7 @@
 
     $("body").on("click", ".viewDialog", function (e) {
         e.preventDefault();
-
+        enableBlock = true;
         if (dlg.dialog("isOpen")) {
             if (dlg.dialog("option", "title") === $(this).attr("dialogTitle")) {
                 dlg.dialog("close");
@@ -56,6 +63,7 @@
             form: $(this).attr("dialogForm")
         });
         $("#okBtn").button("option", "label", $(this).attr("okBtn"));
+        enableBlock = false;
     });
     dlg.keypress(function (e) {
         if (e.keyCode == $.ui.keyCode.ENTER) {

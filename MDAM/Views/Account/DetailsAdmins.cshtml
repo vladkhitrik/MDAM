@@ -1,0 +1,17 @@
+﻿@model MDAM.Controllers.AccountController.AdminUsersViewModel
+@{
+    ViewBag.Title = "Администраторы";
+}
+
+<h2>Администраторы</h2>
+<hr/>
+<ul>
+    @foreach (var user in Model.Users)
+    {
+        <li>@Html.ActionLink(@user.UserName, "Details", "Account", new {id = user.Id}, null)</li>   
+    }
+</ul>
+
+<hrB/>
+@Html.ActionLink("Редактировать", "ManageAdmins", "Account", null, new {@class = "btn btn-default"})
+

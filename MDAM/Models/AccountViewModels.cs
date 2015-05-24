@@ -41,4 +41,15 @@ namespace MDAM.Models
         [System.Web.Mvc.Compare("Password", ErrorMessage = "Пароли не совпадают.")]
         public string ConfirmPassword { get; set; }
     }
+    public class UserViewModel
+    {
+        [Display(Name = "Email адрес")]
+        public string Email { get; set; }
+
+        [Display(Name = "Имя пользователя")]
+        public string UserName { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string Image { get; set; }
+    }
 }
