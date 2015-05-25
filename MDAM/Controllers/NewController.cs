@@ -8,76 +8,58 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using MDAM.Models;
-using MDAM.Models.Boards;
+using MDAM.Models.News;
 using System.Collections;
 using System.Globalization;
 
 namespace MDAM.Controllers
 {
-    public class BoardController : Controller
+    public class NewController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Board
+        // GET: New
         public ActionResult Index()
         {
-            var all = User.IsInRole("Admin") ? true : false;
-            var userId = User.Identity.GetUserId();
-            var boards = db.Boards.Include(b => b.CreatorUser).Where(t => all ? true : t.Status.Equals("Активно"));
-            return View(boards.ToList());
+            var News = db.News.Include(b => b.CreatorUser);
+            return View(News.ToList());
         }
 
-        public ActionResult My()
-        {
-            var userId = User.Identity.GetUserId();
-            var boards = db.Boards.Include(b => b.CreatorUser).Where(t => t.CreatorUserId == userId);
-            return View(boards.ToList());
-        }
-
-        // GET: Board/Details/5
+        // GET: New/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Board board = db.Boards.Find(id);
-            if (board == null)
+            New New = db.News.Find(id);
+            if (New == null)
             {
                 return HttpNotFound();
             }
-            return View(board);
+            return View(New);
         }
-        public ArrayList list = new ArrayList()
-            {
-                new { Title="Добавлено"},
-                new { Title="Активно"},
-                new { Title="Деактивировано"},
-                new { Title="Архив"}
-            };
-        // GET: Board/Create
+        // GET: New/Create
         public ActionResult Create()
         {
-            ViewBag.Status = new SelectList(list, "Title", "Title");
             return View();
         }
 
-        // POST: Board/Create
+        // POST: New/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BoardViewModel model)
+        public ActionResult Create(NewViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var board = new Board();
-                board.Text = model.Text;
-                board.Title = model.Title;
-                board.Status = model.Status;
-                board.CreatorUserId = User.Identity.GetUserId();
-                board.Date = DateTime.Now.ToString("dd MMMM yyyy в HH:mm:ss", CultureInfo.CreateSpecificCulture("ru-RU"));
-                db.Boards.Add(board);
+                var New = new New();
+                New.Text = model.Text;
+                New.Title = model.Title;
+                New.CreatorUserId = User.Identity.GetUserId();
+                New.Date = DateTime.Now.ToString("dd MMMM yyyy в HH:mm:ss", CultureInfo.CreateSpecificCulture("ru-RU"));
+                db.News.Add(New);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -85,68 +67,67 @@ namespace MDAM.Controllers
             return View(model);
         }
 
-        // GET: Board/Edit/5
+        // GET: New/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Board board = db.Boards.Find(id);
-            if (board == null)
+            New New = db.News.Find(id);
+            if (New == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Status = new SelectList(list, "Title", "Title", board.Status);
-            return View(board);
+            return View(New);
         }
 
-        // POST: Board/Edit/5
+        // POST: New/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Board board)
+        public ActionResult Edit(New New)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(board).State = EntityState.Modified;
+                db.Entry(New).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(board);
+            return View(New);
         }
 
-        // GET: Board/Delete/5
+        // GET: New/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Board board = db.Boards.Find(id);
-            if (board == null)
+            New New = db.News.Find(id);
+            if (New == null)
             {
                 return HttpNotFound();
             }
-            return View(board);
+            return View(New);
         }
 
-        // POST: Board/Delete/5
+        // POST: New/Delete/5
         [HttpPost]
         public ActionResult DeleteConfirmed(string id)
         {
-            Board board = db.Boards.Find(id);
-            db.Boards.Remove(board);
+            New New = db.News.Find(id);
+            db.News.Remove(New);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public ActionResult RemoveBoard(string id)
+        public ActionResult RemoveNew(string id)
         {
-            Board board = db.Boards.Find(id);
-            db.Boards.Remove(board);
+            New New = db.News.Find(id);
+            db.News.Remove(New);
             db.SaveChanges();
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }

@@ -11,19 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CreatorUser.Image)
+            @Html.DisplayName("Создатель")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatorUser.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
+            <div style="max-width:50px; max-height: 50px; overflow:hidden; display:inline-block;">
+                <img class="img-responsive" src="~/Images/Users/@Model.CreatorUser.Image" width="50" />
+            </div>
+            @Html.ActionLink(Model.CreatorUser.UserName, "Details", "Account", new { id = Model.CreatorUserId }, new { target = "_blank", style = "position:relative;bottom:10px;margin-bottom:30px;" })
         </dd>
 
         <dt>
@@ -32,6 +27,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
         </dd>
 
         <dt>
@@ -53,6 +56,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Назад к списку", "Index")
 </p>

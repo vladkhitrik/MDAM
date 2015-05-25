@@ -2,10 +2,10 @@
 @model IEnumerable<MDAM.Models.Boards.Board>
 
 @{
-    ViewBag.Title = "Доска объявлений";
+    ViewBag.Title = "Мои объявления";
 }
 
-<h2>Доска объявлений</h2>
+<h2>Мои объявления</h2>
 
 <p>
     @Html.ActionLink("Добавить новое объявление", "Create")
@@ -32,11 +32,8 @@
                 </blockquote>
             </td>
             <td>
-                @if (User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink(" ", "DeleteConfirmed", new { id = item.Id }, htmlAttributes: new { @class = "btnRemove glyphicon glyphicon-remove pull-right confirm btn" })
-                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnEdit glyphicon glyphicon-pencil pull-right btn" })
-                }
+                @Html.ActionLink(" ", "DeleteConfirmed", new { id = item.Id }, htmlAttributes: new { @class = "btnRemove glyphicon glyphicon-remove pull-right confirm btn" })
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnEdit glyphicon glyphicon-pencil pull-right btn" })
             </td>
         </tr>
     }

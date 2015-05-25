@@ -250,8 +250,6 @@ namespace Web.Controllers
             }
             if (dialog.CreatorUserId != User.Identity.GetUserId())
             {
-                if (Request.IsAjaxRequest())
-                    return PartialView("_DetailsFormPartial", dialog);
                 return RedirectToAction("Details", new { Id = id });
             }
             var currentUserId = User.Identity.GetUserId(); // ID текущего пользователя

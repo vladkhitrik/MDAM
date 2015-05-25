@@ -167,6 +167,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\NewController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\DialogTypeController.cs" />
@@ -176,9 +177,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\CustomAuthorize.cs" />
+    <Compile Include="Migrations\201505241546334_init.cs" />
+    <Compile Include="Migrations\201505241546334_init.Designer.cs">
+      <DependentUpon>201505241546334_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505241637054_boardedit.cs" />
+    <Compile Include="Migrations\201505241637054_boardedit.Designer.cs">
+      <DependentUpon>201505241637054_boardedit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505241948144_newsedit.cs" />
+    <Compile Include="Migrations\201505241948144_newsedit.Designer.cs">
+      <DependentUpon>201505241948144_newsedit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attachments\Attachment.cs" />
+    <Compile Include="Models\Boards\BoardViewModels.cs" />
     <Compile Include="Models\Boards\Board.cs" />
     <Compile Include="Models\Common\DbEntity.cs" />
     <Compile Include="Models\Dialogs\Dialog.cs" />
@@ -186,6 +200,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Messages\Message.cs" />
+    <Compile Include="Models\News\NewViewModels.cs" />
     <Compile Include="Models\News\New.cs" />
     <Compile Include="Models\Offices\Office.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -306,6 +321,13 @@
     <Content Include="Views\Board\Details.cshtml" />
     <Content Include="Views\Board\Edit.cshtml" />
     <Content Include="Views\Board\Index.cshtml" />
+    <Content Include="Views\Board\My.cshtml" />
+    <Content Include="Views\New\Create.cshtml" />
+    <Content Include="Views\New\Delete.cshtml" />
+    <Content Include="Views\New\Details.cshtml" />
+    <Content Include="Views\New\Edit.cshtml" />
+    <Content Include="Views\New\Index.cshtml" />
+    <Content Include="Views\Home\_NewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +339,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505241546334_init.resx">
+      <DependentUpon>201505241546334_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241637054_boardedit.resx">
+      <DependentUpon>201505241637054_boardedit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241948144_newsedit.resx">
+      <DependentUpon>201505241948144_newsedit.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

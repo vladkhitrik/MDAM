@@ -4,14 +4,18 @@
 }
 
 <h2>Администраторы</h2>
-<hr/>
-<ul>
+<hr />
+<div class="form-horizontal">
     @foreach (var user in Model.Users)
     {
-        <li>@Html.ActionLink(@user.UserName, "Details", "Account", new {id = user.Id}, null)</li>   
+        <div class="form-group">
+            <div style="max-width:50px; max-height: 50px; overflow:hidden; display:inline-block;">
+                <img class="img-responsive" src="~/Images/Users/@user.Image" width="50" />
+            </div>
+                @Html.ActionLink(user.UserName, "Details", "Account", new { id = user.Id }, new { target = "_blank", style = "position:relative;bottom:10px;margin-bottom:30px;" }) <br />
+        </div>
     }
-</ul>
-
-<hrB/>
-@Html.ActionLink("Редактировать", "ManageAdmins", "Account", null, new {@class = "btn btn-default"})
+</div>
+<hrb />
+@Html.ActionLink("Редактировать", "ManageAdmins", "Account", null, new { @class = "btn btn-default" })
 

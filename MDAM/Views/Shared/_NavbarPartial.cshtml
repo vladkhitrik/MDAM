@@ -13,8 +13,11 @@
             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-chevron-down"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li>@Html.ActionLink("Диалоги", "Index", "Dialog")</li>
-                    <li>@Html.ActionLink("Объявления", "Index", "Board")</li>
+                    <li>@Html.ActionLink("Доска объявлений", "Index", "Board")</li>
+                    <li>@Html.ActionLink("Новости компании", "Index", "New")</li>
+                    <li class="divider"></li>
+                    <li>@Html.ActionLink("Мои сообщения", "Index", "Dialog")</li>
+                    <li>@Html.ActionLink("Мои объявления", "My", "Board")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="divider"></li>
@@ -24,7 +27,7 @@
                     <li>@Html.ActionLink("Настройки профиля", "Index", "Manage")</li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Настройка пользователей", "DetailsAdmins", "Account")</li>
+                        <li>@Html.ActionLink("Настройка администрации", "DetailsAdmins", "Account")</li>
                     }
                 </ul>
             </li>

@@ -1,0 +1,41 @@
+﻿@using System.Globalization
+@model IEnumerable<MDAM.Models.News.New>
+
+<h2>Новости компании</h2>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Добавить новое объявление", "Create")
+    }
+</p>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        ViewBag.HrefMsg = "location.href='" + Html.Raw(Url.Action("Details", "New", new { id = item.Id })) + "'";
+        ViewBag.MouseOver = "parentElement.style.background='#eeeeee',this.style.cursor='pointer'";
+        ViewBag.MouseOut = "parentElement.style.background='white'";
+        <tr>
+            <td class="col-md-10" onclick=@Html.Raw(ViewBag.HrefMsg) onmouseover=@Html.Raw(ViewBag.MouseOver) onmouseout=@Html.Raw(ViewBag.MouseOut)>
+                <blockquote>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </p>
+                </blockquote>
+            </td>
+            <td clad="col-md-2">
+                <span style="font-size: x-small">@item.Date</span>
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink(" ", "DeleteConfirmed", "New", new { id = item.Id }, htmlAttributes: new { @class = "btnRemove glyphicon glyphicon-remove pull-right confirm btn" })
+                    @Html.ActionLink(" ", "Edit", "New", new { id = item.Id }, htmlAttributes: new { @class = "btnEdit glyphicon glyphicon-pencil pull-right btn" })
+                }
+            </td>
+        </tr>
+    }
+</table>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryconfirm")
+}

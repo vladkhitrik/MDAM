@@ -27,6 +27,6 @@ namespace MDAM.Models.Boards
         public string Status { get; set; }
 
         [Display(Name = "Дата подачи")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

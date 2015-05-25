@@ -24,6 +24,6 @@ namespace MDAM.Models.News
         public string Title { get; set; }
 
         [Display(Name = "Дата")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

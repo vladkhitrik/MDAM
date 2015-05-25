@@ -3,7 +3,7 @@
 }
 
 <div class="jumbotron">
-    <h1 class="text-center">Добро пожаловать в АБС УОР</h1>
+    <h1 class="text-center">Управление развития и спопровождения АБС УОР</h1>
     <p class="text-center lead">Автоматизированная банковская система "Учетно-операционные работы" - это комплекс программного и технического обеспечения, направленный на автоматизацию учетно-операционных работы Национального банка Республики Беларусь.</p>
     <p class="text-center">@Html.ActionLink("Перейти в диалоги >>", "Index", "Dialog", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-large" })</p>
 </div>
@@ -30,3 +30,4 @@
         <p>@Html.ActionLink("Контакты", "Contact", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })</p>
     </div>
 </div>
+@{Html.RenderAction("News");}

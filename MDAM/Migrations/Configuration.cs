@@ -65,12 +65,6 @@ namespace MDAM.Migrations
 
                 base.Seed(context);
             }
-
-            context.DialogTypes.AddOrUpdate(
-                new DialogType { Title = "Беседа" },
-                new DialogType { Title = "Задание" },
-                new DialogType { Title = "Почта" }
-            );
         }
     }
 }
